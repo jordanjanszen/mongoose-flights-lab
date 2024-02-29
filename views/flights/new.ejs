@@ -1,0 +1,37 @@
+<%- include('../partials/header') %>
+
+<h2>Enter new flight details:</h2>
+<form action="/flights" method="POST">
+    <label>Airline:
+        <select name="airline">
+          <option value="Emirates">Emirates</option>
+          <option value="Etihad">Etihad Airways</option>
+          <option value="Singapore">Singapore Airlines</option>
+          <option value="Cathay Pacific">Cathay Pacific</option>
+          <option value="Turkish">Turkish Airways</option>
+          <option value="KLM">KLM</option>
+          <option value="Qantas">Qantas Airways</option>
+        </select>
+      </label><br>
+    <label>Airport:
+        <select name="airport">
+          <option value="DXB">Dubai</option>
+          <option value="AUH">Abu Dhabi</option>
+          <option value="SYD">Sydney</option>
+          <option value="AMS">Amsterdam</option>
+          <option value="HKG">Hong Kong</option>
+          <option value="SIN">Singapore</option>
+          <option value="LAX">Los Angeles</option>
+        </select>
+      </label><br>
+    <label>Flight number:
+        <input type="number" name="flightNo" placeholder="10-9999">
+  </label><br>
+  <label>Departure date:
+    <input type="date" name="departs">
+  </label><br>
+  <button type="submit">Add Flight</button>
+</form>
+<p><%= errorMsg %></p>
+
+<%- include('../partials/footer') %>

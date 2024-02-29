@@ -1,0 +1,25 @@
+<%- include('../partials/header') %>
+
+ <table>
+   <thead>
+     <tr>
+       <th>Airline</th>
+       <th>Airport</th>
+       <th>Flight Number</th>
+       <th>Departs</th>
+       <th>Now Showing</th>
+     </tr>
+   </thead>
+   <tbody>
+     <!-- Write the line of EJS to iterate over flights using forEach -->
+     <% flights.forEach(function(f) { %>
+       <tr>
+         <td><%= f.airline %></td>
+         <td><%= f.airport %></td>
+         <td><%= f.flightNo %></td>
+         <td><%= f.departs %></td>
+       </tr>
+     <!-- Close the forEach using EJS here -->
+     <% }); %>
+   </tbody>
+ </table>
