@@ -1,15 +1,13 @@
 // --> /routes/index.js
 
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const flightsRouter = require('./flights'); // Adjust the path based on your file structure
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', (req, res, next) => {
   res.render('index', { title: 'Mongoose Flights Lab' });
 });
 
-router.get('/flights', function(req, res, next) {
-  res.render('flights/index', { title: "List of Flights" });
-});
+router.use('/flights', flightsRouter); // Use the flightsRouter for /flights route
 
 module.exports = router;
