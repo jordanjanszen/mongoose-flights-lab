@@ -12,5 +12,4 @@ router.get('/flights', function(req, res, next) {
   res.render('flights/index', { title: "List of Flights" });
 });
 
-
 module.exports = router;
