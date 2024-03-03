@@ -3,6 +3,40 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const ticketSchema = new Schema({
+    seat: {
+        type: String,
+        match: /[A-F][1-9]\d?/,
+        required: true
+    },
+    price: {
+        type: Number,
+        min: 0,
+        required: true
+    },
+    flight: {
+        type: Schema.Types.ObjectId,
+        ref: 'Flight',
+        required: true
+    }
+});
+
+module.exports = mongoose.model('Ticket', ticketSchema);
+
+const destinationSchema = new Schema( {
+    airport: {
+        type: String,
+        enum: ['DXB', 'AUH', 'SYD', 'AMS', 'HKG', 'SIN', 'LAX'],
+        required: true,
+    },
+    arrival: {
+        type: Date,
+        required: true,
+    },
+});
+
+module.exports = mongoose.model('Destination', destinationSchema);
+
 
 const flightSchema = new Schema({
     airline: {
@@ -27,6 +61,14 @@ const flightSchema = new Schema({
         type: Date,
         default: () => new Date(new Date().setFullYear(new Date().getFullYear() + 1)),
     },
+    destinations: {
+        type: [destinationSchema], // Array of destination subdocuments
+        default: [],
+      },
+    tickets: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Ticket',
+    }],
 }, {
     timestamps: true,
 });

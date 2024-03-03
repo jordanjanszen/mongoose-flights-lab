@@ -1,0 +1,35 @@
+<%- include('../partials/header') %>
+
+<h2>Flight Details</h2>
+<p>Airline: <%= flight.airline %></p>
+<p>Airport: <%= flight.airport %></p>
+<p>Flight Number: <%= flight.flightNo %></p>
+<p>Departs: <%= flight.departs %></p>
+<hr>
+<h3>Tickets for Flight: <%= flight.flightNo %></h3>
+<ul>
+    <% tickets.forEach(function(ticket) { %>
+        <li>Seat: <%= ticket.seat %>, Price: <%= ticket.price %></li>
+    <% }); %>
+    <a href="/flights/<%= flight._id %>/tickets/new">New Ticket</a>
+</ul>
+
+<h3>Destinations:</h3>
+<ul>
+  <% flight.destinations.forEach(destination => { %>
+    <li>Airport: <%= destination.airport %>, Arrival: <%= destination.arrival %></li>
+  <% }); %>
+</ul>
+<hr>
+<h3>Add Destination</h3>
+<form action="/flights/<%= flight._id %>/destinations" method="POST">
+  <label>Airport:
+    <input type="text" name="airport" required>
+  </label><br>
+  <label>Arrival:
+    <input type="datetime-local" name="arrival" required>
+  </label><br>
+  <button type="submit">Add Destination</button>
+</form>
+
+<%- include('../partials/footer') %>

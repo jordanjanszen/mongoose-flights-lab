@@ -19,6 +19,11 @@ router.get('/', async (req, res, next) => {
       res.status(500).send('Internal Server Error');
     }
   });
-  
 
-module.exports = router;
+// GET /flights/:id - Show view for a specific flight
+router.get('/:id', flightsController.show);
+
+// POST /flights/:id/destinations - Add destination for a flight
+router.post('/:id/destinations', flightsController.addDestination);
+
+  module.exports = router;
